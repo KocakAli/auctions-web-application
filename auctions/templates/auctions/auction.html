@@ -1,0 +1,103 @@
+{% extends 'auctions/layout.html' %}
+
+{% block body %}
+    <div class='container-fluid mt-2'>
+        {% if message %}
+            <div class='alert alert-danger display-6'>Error: {{message}}</div>
+        {% endif %}
+        {% if auction.closed == 1 %}
+            {% ifequal user.get_username auction.last_bid.username %}
+                <div class='alert alert-success display-6'>
+                    Congratulations! You won this auction!
+                </div>
+            {% endifequal %}
+        {% endif %}
+                <h2>{{auction.name}}</h2>
+                <div class='d-flex flex-wrap'>
+                    <div >
+                        <img id='image' src="{{auction.image}}" width="720" height="480">
+                    </div>
+                    <div style="width: 480px; height:360px; padding: 10px">{{auction.text}}</div>
+                </div>
+               
+                <p><span style='font-size:28px ;'>Created by:</span><a href ='{% url "show" auction.auction_user.username %}'> {{auction.auction_user.username}}</a></p>
+            <div class='mb-3 lead'>
+                {% if auction.last_bid.username %}
+                <p>Last Price: <strong>{{auction.bid}}$</strong> from: <a href ='{% url "show" auction.last_bid.username %}'> {{auction.last_bid.username}}</a></p>   
+                {% else %}  
+                    <p>Current Price: {{auction.bid}} $ </p>     
+                {% endif %}
+                {% if auction.closed == 1 %}
+                    <p >Winner: {{auction.last_bid.username}} </p>          
+                {% else %}
+                    <form action = '{% url "bid" auction.id%}' method='POST'>
+                        {% csrf_token %}
+                        <input autocomplete="off" type='number' name='bid' placeholder="$">
+                        <input type='submit' class="btn btn-danger" value='Bid'>
+                    </form> 
+            </div>
+            <div>
+                {% ifequal user.get_username auction.auction_user.username %}
+                    <form action="{% url 'close' %}" method="POST">
+                        {% csrf_token %}
+                        <input type='hidden' name='watch' value='{{user.get_username}}'>
+                        <input type='hidden' name='username' value='{{auction.auction_user.username}}'>
+                        <input type='hidden' name='auction_id' value='{{auction.id}}'>
+                        <input type='submit' class="btn btn-danger"  value='close list'>
+                    </form>
+                {% else %}
+                    <form action="{% url 'watchlist' %}" method="POST">
+                        {% csrf_token %}
+                        <input type='hidden' name='watch' value='{{user.get_username}}'>
+                        <input type='hidden' name='username' value='{{auction.auction_user.username}}'>
+                        <input type='hidden' name='auction_id' value='{{auction.id}}'>
+                        <input type='submit' class="btn btn-danger" value='add to watchlist'>
+                    </form>
+                {% endifequal %}
+            </div>
+                
+            {% endif %}
+            <div class='mt-5 '>
+                <h2>Add Comment</h2>
+                <form action="{% url 'comment'%}" id="comment" method='POST'>
+                    {% csrf_token %}
+                    <div class='d-flex flex-column' style='width: 25%;'>
+                        <div>
+                            <label class='lead' for='c_title'>Comment Title:</label>
+                            <input autocomplete="off" id='c_title' type="text" name="title">
+                        </div>
+                        <div>
+                            <input type='hidden' name='auction_id' value='{{auction.id}}' >
+                        </div>
+                        <div class='mt-3'>
+                            <input type='hidden' name='username1' value='{{auction.auction_user.username}}'>
+                            <textarea  style='resize: none;'rows="4" cols="50" name="comment" form="comment">Enter Comment here...</textarea>
+                        </div>
+                        <div>
+                            <input type="submit" class="btn btn-danger" value='add comment'>
+                        </div>                     
+                    </div>                  
+                  </form>   
+            </div>
+            
+
+            <div class='mb-3 mt-5 d-flex flex-column'>
+                <h2>Comments</h2>
+                {% for comment in comments %}
+                <div class='mt-2 p-3' style='border:1px black solid; width: 50%;' >
+                    <div style='border-bottom: 1px black solid;'>
+                        <h4>{{comment.title}}</h4>
+                    </div>
+                    <div>
+                        <p>{{comment.comment}}</p>
+                    </div>
+                    <div>
+                        <p style='font-size: 12px;'>Comment by: <a href='{% url  "show" comment.comment_user.username%}'>{{comment.comment_user.username}}</a></p>
+                    </div>
+                    
+                </div>
+            {% endfor %}
+            </div>
+              
+        </div>
+{% endblock %}

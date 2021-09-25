@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+        <style>
+            .wrapper{
+                display:grid;
+                grid-template: repeat(3,100px)/ repeat(3,80px);
+                grid-template-areas: 
+                "img img img none "
+                "img img img none "
+                "txt txt txt txt "
+                
+                ;
+            }
+
+            .one{grid-area: img;}
+            .two{grid-area: txt;}
+            .three{grid-area:txt2}
+            .four{grid-area:txt3}         
+         
+        </style>
+    </head>
+    <body>
+    
+        <div class='container d-flex'>
+            <div class='wrapper' style='color:black; border: 1px solid lightgray;'>
+                <div class="one d-flex flex-column" style=' border-radius: 5px ;padding:10px; background-color: white '>
+                    <div style='background-color: gray; height: 100%;'>
+                        <img src ='https://www.boconcept.com/on/demandware.static/-/Sites-master-catalog/default/dwd633af54/images/700000/704909.jpg' width="220" height="180">
+                    </div>    
+                </div>
+                <div class="two d-flex flex-column" style='padding:5px;border-radius: 5px;border-top: 1px lightgray solid;'>
+                    <div class='lead' style='color:black;'>
+                        <div>
+                           <h5>lorems100</h3>
+                        </div>
+                    </div>
+                    
+                    <div style="font-size: 14px;">Created by: lorsem100</div>
+                    <div style="font-size: 14px;">Current price: </div>
+                    <div style="font-size: 14px;">Category: </div>
+                </div>
+            </div>
+
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    </body>
+</html>

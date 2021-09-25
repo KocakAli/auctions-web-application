@@ -1,0 +1,77 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Auctions{% endblock %}</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        
+        <link href="{% static 'auctions/styles.css' %}" rel="stylesheet">
+        
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark " style='background-color: rgb(41, 38, 38);'>
+            <div class="container p-2">
+              <a class="navbar-brand" href="{% url 'index' %}">
+                <svg id="_x31_" enable-background="new 24 24 0 0" height="64" viewBox="0 0 24 24" width="64" xmlns="http://www.w3.org/2000/svg">
+                  <g><g>
+                    <path fill='white' d="m12.5 24h-11c-.827 0-1.5-.673-1.5-1.5v-1c0-.827.673-1.5 1.5-1.5h11c.827 0 1.5.673 1.5 1.5v1c0 .827-.673 1.5-1.5 1.5zm-11-3c-.276 0-.5.225-.5.5v1c0 .275.224.5.5.5h11c.276 0 .5-.225.5-.5v-1c0-.275-.224-.5-.5-.5z"/></g></g>
+                    <g><g><g><g>
+                      <path fill='white'd="m10.693 12.628c-.233 0-.456-.068-.64-.252l-3.51-3.51c-.614-.614.061-1.676.282-2.024.415-.652 1.061-1.43 1.821-2.19.761-.762 1.54-1.41 2.192-1.825.35-.223 1.413-.898 2.027-.284l3.51 3.51c.615.615-.062 1.679-.284 2.028-.416.653-1.064 1.432-1.826 2.193-.76.76-1.538 1.406-2.189 1.82-.243.156-.838.534-1.383.534zm1.466-9.378c-.175.007-1.272.576-2.802 2.105-1.53 1.53-2.1 2.628-2.064 2.876l3.468 3.438c.176-.007 1.273-.576 2.804-2.106 1.472-1.473 2.054-2.544 2.064-2.844z"/></g></g>
+                      <g><g><path fill='white'd="m9.003 14.919c-.382 0-.765-.146-1.056-.437l-3.51-3.51c-.282-.281-.437-.656-.437-1.055s.155-.774.438-1.056l.702-.702c.582-.582 1.529-.582 2.111 0l3.51 3.51c.582.582.582 1.529 0 2.111l-.702.702c-.292.291-.674.437-1.056.437zm-2.808-6.197c-.126 0-.252.049-.349.145l-.701.701c-.094.094-.145.217-.145.349s.051.255.145.349l3.51 3.51c.193.192.505.191.697 0l.702-.702c.192-.192.192-.505 0-.697l-3.51-3.51c-.097-.096-.223-.145-.349-.145z"/></g></g>
+                      <g><g><path fill='white' d="m16.725 7.196c-.382 0-.765-.146-1.056-.437l-3.51-3.51c-.582-.582-.582-1.528 0-2.11l.702-.702c.582-.582 1.529-.582 2.111 0l3.51 3.51c.582.582.582 1.529 0 2.111l-.702.702c-.291.291-.673.436-1.055.436zm-2.808-6.195c-.126 0-.252.048-.349.144l-.702.702c-.192.192-.192.504 0 .696l3.51 3.51c.192.191.505.191.697 0l.702-.701c.192-.192.192-.505 0-.697l-3.51-3.51c-.096-.096-.222-.144-.348-.144zm4.211 4.704h.01z"/></g></g></g>
+                      <g><g><g><path fill='white 'd="m22.097 20.003c-.603 0-1.252-.345-1.942-1.035s-4.747-5.155-7.265-8.124c-.179-.21-.153-.526.058-.704.21-.179.526-.154.705.058 2.626 3.096 6.613 7.467 7.209 8.063 1.126 1.128 1.565.689 1.827.429.12-.12.285-.284.308-.519.034-.341-.221-.793-.736-1.309-.591-.592-4.955-4.573-8.063-7.211-.211-.179-.237-.494-.058-.704.18-.213.495-.236.705-.058 2.981 2.529 7.441 6.581 8.125 7.266.745.745 1.09 1.457 1.024 2.115-.059.589-.422.952-.596 1.126-.406.405-.84.607-1.301.607z"/></g></g></g></g></svg>
+                Commerce
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link " href="{% url 'index' %}">Listings</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'list' %}">Create List</a>
+                  </li>
+                </ul>
+                <div class="d-flex">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">  
+                        {% if user.is_authenticated %}
+                        <li class='nav-item'>
+                            <a class='nav-link disabled'>{{user.get_username}}</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='nav-link' href='{% url "show" user.get_username%}'>Watchlist</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='nav-link' href='{% url "logout" %}'>Logout</a>
+                        </li>
+                        {% else %}
+                        <li class='nav-item'>
+                            <a class='nav-link' href='{% url "login" %}'>Login</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='nav-link' href='{% url "register" %}'>Register</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+              </div>
+            </div>
+          </nav>
+          
+        
+        
+        {% block body %}
+        {% endblock %}
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    </body>
+</html>

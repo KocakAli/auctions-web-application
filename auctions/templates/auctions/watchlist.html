@@ -1,0 +1,37 @@
+{% extends 'auctions/layout.html' %}
+
+{% block body %}
+    <div class='container'>
+        <div class='d-flex justify-content-center mt-3'>
+            {% if watchlists|length != 0  %}
+                <h1 class='display-6'>{{name}}'s list</h1>
+            {% else %}
+                <p class='display-5'>{{name}}'s list is empty.</p>
+            {% endif %}
+        </div>
+        
+        <div class='d-flex flex-wrap'>
+        <ol>
+            {% for watchlist in watchlists %}
+            <li>
+                <div class='p-3'>
+                    <h1 class='lead'>Created by: {{watchlist.watch_user.username}}</h1>
+                    <div class='d-flex flex-column'>
+                        <div>List name: <a href="{% url 'auction' watchlist.watch_auc.id%}"> {{watchlist.watch_auc.name}}</a></div>
+                        <form action ='{% url "remove" watchlist.id %}' method="POST" >
+                            {% csrf_token %}
+                            <input type="submit" class='btn btn-danger ' value='Remove'>
+                        </form>
+                    </div>
+                    
+                </div>
+            </li>
+            {% endfor %}
+        </ol>
+        </div>
+           
+                
+
+    </div>
+  
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'auctions/layout.html' %}
+
+{% block body %}
+    <div class='container mt-5' >
+        {% if message %}
+            <h1>{{message}}</h1> 
+        {% endif %}
+        <form action='{% url "list"%}' method='POST' >
+            {% csrf_token %} 
+            <div>
+                <label class='display-6' for='title'>List Title: </label>
+                <input autocomplete="off" style='width: 50%;' type='text' name='title' id='title' placeholder="Title">
+            </div>
+            
+            <div>
+                <label  class='display-6 mt-3' for='bid'>Starting Price: </label>
+                <input autocomplete="off" style='width: 50%;' type='text' name='bid' id='bid' placeholder= "$">
+            </div>
+            
+
+            <div>
+                <label class='display-6 mt-3' for="cat">Choose a category:</label>
+                <select style='width:50%; height: 35px;' name="cat" id="cat">
+                    {% for category in categories %}
+                        <option   value="{{category.id}}">{{category.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div>
+                <label class='display-6 mt-3' for='text'>Description:</label>
+                <textarea style="resize: none;" id="text" name="text" rows="4" cols="74"></textarea>
+            </div>
+            <div>
+                <label for="img">Add image url (optional):</label>
+                <input autocomplete="off" type="textt" id="img" name="img"  required>
+                <input type='submit' value='add'>
+            </div>
+        </form>      
+    </div>
+
+{% endblock %}

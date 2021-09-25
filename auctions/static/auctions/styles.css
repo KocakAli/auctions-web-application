@@ -1,0 +1,88 @@
+body{
+    background-color:lightgray
+}
+.mcolor{
+    background-color: rgb(190, 19, 19);;
+}
+
+.colorwhite{
+    color: white;
+}
+body::-webkit-scrollbar{
+    width: 0.5rem;
+}
+body::-webkit-scrollbar-track{
+    background-color: black;
+}
+body::-webkit-scrollbar-thumb{
+    background-color: teal;
+}
+
+.filter{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 15px;
+    
+}
+
+.filter input[type='submit']{
+    margin-top: 5px;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid black;
+    color:black;
+    background-color:rgb(153, 153, 153);
+}
+.filter #cat{
+    width:100%;
+}
+
+
+
+
+.auction{
+    display: grid;
+    grid-template: 6fr / 2fr 1fr;
+    border-radius: 10px;
+    background-color: rgb(153, 153, 153);
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+  
+
+
+a:hover{
+    text-decoration: none;
+}
+
+
+.wrapper{
+    display:grid;
+    grid-template: repeat(4,100px)/ repeat(4,80px);
+    grid-template-areas: 
+    "img img img img "
+    "img img img img "
+    "img img img img"
+    "txt txt txt txt "
+    
+    ;
+}
+
+.one{grid-area: img;}
+.two{grid-area: txt;}
+.three{grid-area:txt2}
+.four{grid-area:txt3}       
+
+label{
+    display: block;
+}
+
+
+@media only screen and (max-width: 1350px) {
+    #image{
+      width: 480px;
+      height: 360px;
+    }
+  }
+

@@ -1,0 +1,61 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+<div  class="container justify-content-center align">
+    <div class='d-flex justify-content-center align-items-center mt-3' style='background-color: rgb(41, 38, 38);border-radius:10px ;'>
+        <div class='container d-flex flex-column align-items-center justify-content-center'>
+            <form  action='{% url "cat" %}' method='POST' class=' filter d-flex flex-column align-items-center align-items-center'> 
+                {% csrf_token %}
+                <label for="cat" class='lead' style='color:white'>Filter by Category:</label>
+                <select name="cat" id="cat">
+                    {% for category in categories %}
+                    <option value="{{category.id}}">{{category.name}}</option>
+                    {% endfor %}
+                </select>
+                <input type='submit' value='Filter'>
+            </form> 
+        </div> 
+    </div>
+    <div class='mt-3'>
+        {% if auctions.count == 0 %}
+            <h2 class='display-5 d-flex justify-content-center'>No Listings In This Category</h2>
+        {% else %}
+        <h2 class='display-5 d-flex justify-content-center'>Listings</h2>
+        {% endif %}
+  
+    </div>
+    <div class=' container mt-5 d-flex flex-wrap justify-content-evenly' >
+        {% for auction in auctions %}
+            <div class='wrapper mt-5' style='color:black;'>
+                <div class="one d-flex flex-column" style=' border-radius: 5px ;padding:5px;'>
+                    <div style='background-color: gray; height: 100%;'>
+                        <img src ='{{auction.image}}' width="310" height="290">
+                    </div>    
+                </div>
+                <div class="two d-flex flex-column" style='padding:5px;border-radius: 5px;'>
+                    <div class='lead' style='color:black;'>
+                        <div>
+                        <h5><a href="{% url 'auction' auction.id%}">{{auction.name}}</a></h5>
+                        </div>
+                    </div>
+                    <div style='color:rgb(0, 0, 0)'>
+                        <div style="font-size: 14px;">Created by: <a href="{% url 'show' auction.auction_user.username%}" >{{auction.auction_user.username}}</a></div>
+                        <div style="font-size: 14px;">Current price: {{auction.bid}} $</div>
+                        <div style="font-size: 14px;">Category: {{auction.category.name}}</div>
+                        {% if auction.closed == 1 %}
+                            <div style="font-size: 14px;">Status: Closed</div>
+                        {% else %}
+                        <div style="font-size: 14px;">Status: Active</div>
+                        {% endif %}
+
+                    </div>
+                    
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}
+
